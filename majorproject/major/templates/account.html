@@ -1,0 +1,76 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+Account
+{% endblock %}
+
+
+{% block main %}
+<div style="">
+    <div class="text-start my-2">
+        <h3><strong>Your Account</strong></h3>
+    </div>
+    
+        <a href="/your_orders" class="text-decoration-none my-3">
+            <div class="box" style="background-color:rgba(255, 255, 255, 0.5); backdrop-filter: blur(10px); opacity: 0.8;">
+                <div class="d-inline">
+                    <i class="fa-brands fa-jedi-order"></i>
+                </div>
+                <div class="d-inline">
+                    <h6 style="color:black">Your order</h6>
+                    <span style="color:gray">Track,return, or buy things again</span>
+                </div>
+            </div>
+        </a>
+
+
+    <a href="/security" class="text-decoration-none">
+        <div class="box" style="background-color:rgba(255, 255, 255, 0.5); backdrop-filter: blur(10px); opacity: 0.8;">
+            <div class="d-inline">
+                <i class="fa-solid fa-lock"></i>
+            </div>
+            <div class="d-inline">
+                <h6 style="color:black">Login & Security</h6>
+                <span style="color:gray">Edit login, name, mobile number</span>
+            </div>
+        </div>
+    </a>
+
+    <a href="/youraddress" class="text-decoration-none">
+        <div class="box" style="background-color:rgba(255, 255, 255, 0.5); backdrop-filter: blur(10px); opacity: 0.8;">
+            <div class="d-inline">
+                <i class="fa-solid fa-address-card"></i>
+            </div>
+            <div class="d-inline">
+                <h6 style="color:black">Your Address</h6>
+                <span style="color:gray">Edit your address for orders</span>
+            </div>
+        </div>
+    </a>
+
+    <a href="/contect" class="text-decoration-none">
+        <div class="box" style="background-color:rgba(255, 255, 255, 0.5); backdrop-filter: blur(10px); opacity: 0.8;">
+            <div class="d-inline">
+                <i class="fa-solid fa-rss"></i>
+            </div>
+            <div class="d-inline">
+                <h6 style="color:black">Contect Us</h6>
+                <span style="color:gray"></span>
+            </div>
+        </div>
+    </a>
+
+
+    <a href="/logout" class="text-decoration-none">
+        <div class="box" style="background-color:rgba(255, 255, 255, 0.5); backdrop-filter: blur(10px); opacity: 0.8;">
+            <div class="d-inline">
+                <i class="fa-solid fa-right-from-bracket"></i>
+            </div>
+            <div class="d-inline">
+                <h6 style="color:black">Sign Out</h6>
+                <span style="color:gray"></span>
+            </div>
+        </div>
+    </a>
+</div>
+{% endblock %}

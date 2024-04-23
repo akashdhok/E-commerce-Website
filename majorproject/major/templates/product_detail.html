@@ -1,0 +1,116 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    {% for data in product_detail %}
+    {{data.name}}
+    {% endfor %}
+{% endblock %}
+
+{% block main %}
+{% if product_detail %}
+        {% for data in product_detail %}
+    <div class="product_detail my-3" style="background-color:rgba(255, 255, 255, 0.5); backdrop-filter: blur(10px); opacity: 0.8;">
+        <div class="row">
+            <div class="col" >
+                <img class="detail_img" src="/static/img/{{data.name}}.png">
+            </div>
+            <div class="col">
+                <div class="product_detail_name">
+                    <div class="d-flex flex-column">
+                        <h2 style="text-align: start;">{{data.name}}</h2>
+                        <hr class="my-0">
+                        <span style="text-align: start;">
+                            {{data.description}}
+                        </span>
+                        <hr class="my-1">
+                        <div>
+                            <strong>
+                                &#8377;{{data.price}}
+                            </strong>
+                            <p class="my-0">(Inclusive of all taxes)</p>
+                            <hr class="my-1">
+                        </div>
+                        <div class="d-flex justify-content-around mt-2">
+                            <a href="/order/{{data.product_id}}" class="btn btn-primary">Buy now</a>
+                            <a href="/add_to_cart/{{data.product_id}}" class="btn btn-primary">
+                                <div class="d-none d-lg-block">
+                                    <i class="fa-solid fa-cart-shopping"></i> Add to cart
+                                </div>
+                                <div class="d-sm-block d-lg-none">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- <div class="product_description" style="background-color:white">
+        <h6 class="pt-2"  style="font-weight:700">
+            Product Description
+        </h6>
+        <p class="px-4 py-2" style="text-align:start">
+            Indulge your taste buds with our premium Oyster Mushroom Pickle in a convenient 200g pack! Handcrafted with care, our savory pickle is made from the finest oyster mushrooms, expertly blended with a medley of aromatic spices to create a tantalizing flavor profile. Bursting with natural goodness, this vegetarian delight is perfect for those seeking a unique and healthy twist to their meals. Elevate your culinary experience with every bite, as the rich umami of oyster mushrooms marries with the zesty, pickled goodness. Whether as a flavorful accompaniment to your favorite dishes or a gourmet topping for sandwiches and salads, our Oyster Mushroom Pickle is a must-have addition to your pantry. Savor the essence of nature in every jar – order now for a taste that's simply extraordinary!
+        </p>
+    </div> -->
+
+
+    <div class="product_detail my-3" style="background-color:rgba(255, 255, 255, 0.5); backdrop-filter: blur(10px); opacity: 0.8;">
+        <h6 class="pt-2"  style="font-weight:700">
+        Product Detail
+        </h6>
+        <p class="px-4 py-2" style="text-align:start">
+            **Ingredients:**
+               - Oyster Mushrooms, Spices, Edible Oil, Vinegar, Salt, and Love.
+            <br>
+            **Storage Instructions:**
+            - Store in a cool, dry place. Refrigerate after opening.
+            <br>
+
+            **Packaging:**
+            - The Oyster Mushroom Pickle is elegantly packaged in a secure 200g pack, ensuring freshness and flavor preservation.
+            <br>
+
+            **Ideal For:**
+            - Gourmet food enthusiasts, health-conscious individuals, and anyone seeking a delightful addition to their culinary repertoire.
+
+            <br>
+            Explore the world of flavors with our Oyster Mushroom Pickle. Order now and elevate your meals with this exquisite culinary creation.
+
+            <br>
+        </div>
+
+
+    <div class="product_review" style="background-color:rgba(255, 255, 255, 0.5); backdrop-filter: blur(10px); opacity: 0.8;"">
+        <h6 class="pt-2"  style="font-weight:700">
+        Product Reviews
+        </h6>
+        <form method="post" action="/review_post/{{data.product_id}}"class="review_form">
+            <input class="review_input" autocomplete="off" placeholder="Your review on this product." name="review" id="review" required>
+            <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+        </form>
+        <h7 class="pt-2"  style="font-weight:700">Top reviews</h7>
+        {% for review in reviews %}
+        <div class="text-start px-5">
+            <div>
+                <i class="fa-solid fa-user"></i><strong>
+                    {{review.username}}
+                </strong>
+            </div>
+            <div style="font-size:12px;color:gray">
+                Reviewed on {{review.posted__at}}
+            </div>
+            <div>
+                {{review.review}}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+        {% endfor %}
+    {% else %}
+    <h1>Nothing to show</h1>
+    {% endif %}
+{% endblock %}

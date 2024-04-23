@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block main %}
+<div class="d-lg-inline-flex p-5 mt-4" style="background-color:white">
+    <div class="SignUpForm">
+        <div class="d-flex justify-content-start my-4">
+            <h3>
+                 Verifi
+            </h3>
+        </div>
+    <form action="/login" method="post">
+        <div class="mb-2">
+            <lable class="form-label"><b>Mobile number</b></lable>
+            <input class="form-control" placeholder="+91XXXXXXXXXX" autocomplete="off" name="phone" id="phone">
+            <div class="mb-1 text-danger" style="font-size:12px">
+                {{mobile_error}}
+            </div>
+        </div>
+        <div class="mb-2">
+            <label class="form-label"><b>Password</b></label>
+            <input class="form-control" placeholder="******" name="password" id="password" type="password" />
+            <div class="mb-1 text-danger" style="font-size:12px">
+                {{password_error}}
+            </div>
+        </div>
+        <div class="mb-1 text-danger" style="font-size:12px">
+            {{error}}
+        </div>
+        <button type="submit" class="btn btn-primary">Log in</button>
+        <div>
+            <a href="/" style="font-size:14px">Forgotten your password?<span>&#8599</span></a>
+        </div>
+        <div style="font-size:14px">
+            <span>New?</span><a href="/register"> Sign up now.<span>&#8599</span></a>
+        </div>
+    </form>
+</div>
+<script>
+
+</script>
+{% endblock %}

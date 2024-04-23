@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, width=device-width">
+
+        <!-- http://getbootstrap.com/docs/5.1/ -->
+        <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" rel="stylesheet">
+        <script crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"></script>
+        <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+        <link href="/static/styles.css" rel="stylesheet">
+
+        <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon_io/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon_io/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon_io/favicon-16x16.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon_io/favicon.ico">
+        <link rel="manifest" href="/site.webmanifest">
+
+        <title>{% block title %}{% endblock %}</title>
+        <script src="https://kit.fontawesome.com/3844f54b1b.js" crossorigin="anonymous"></script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded',function(){
+                let search = document.querySelector('.search')
+                search.addEventListener('click',function(){
+                    search.style.display = 'none';
+                    document.querySelector('.search_form').style.display = 'block';
+                })
+            })
+        </script>
+
+    </head>
+    <body>
+        <!--NavBar-->
+        <nav class=" navbar navbar-expand-md navbar-dark " style="background-color: #17222e; padding-top:0px; padding-bottom:0px;">
+
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">
+                    <img src="/static/img/logo.png" alt="logo" style="height:50px; width:50px;"/>
+                </a>
+                {% if session["user_id"] %}
+                    <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbar" data-bs-toggle="collapse" type="button" style="border-color:#17222e">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                {% else %}
+                <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbar" data-bs-toggle="collapse" type="button" style="border-color:#17222e">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                {% endif %}
+                <div class="collapse navbar-collapse " id="navbar">
+                    {% if session["user_id"] %}
+                        <ul class="navbar-nav me-auto mt-2 ">
+                            <form class="search_form" name="search" id="search" action="/search" method="post" >
+
+                                <div class="searchBar">
+                                  <input id="searchQueryInput" type="text" name="search" id="search" autocomplete="off" placeholder="Search" style=" background-color: #17222e;" >
+                                  <button id="searchQuerySubmit" type="submit" name="searchQuerySubmit">
+                                    <i class="fa-solid fa-magnifying-glass" style="color:#fff"></i>
+                                  </button>
+                                </div>
+
+                        </form>
+                        </ul>
+                        <ul class="navbar-nav ms-auto mt-2">
+                            <li class="nav-item "><a class="nav-link" href="/products"><i class="fa-brands fa-product-hunt"></i> Products</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/account"><i class="fa-solid fa-user"></i> Account</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/cart"><i class="fa-solid fa-cart-shopping"></i> Cart</a></li>
+                        </ul>
+                    {% else %}
+                    <ul class="navbar-nav me-auto mt-2 ">
+                        <form class="search_form" name="search" id="search" action="/search" method="post" >
+
+                                <div class="searchBar">
+                                  <input id="searchQueryInput" type="text" name="search" id="search" autocomplete="off" placeholder="Search" style=" background-color: #17222e;" >
+                                  <button id="searchQuerySubmit" type="submit" name="searchQuerySubmit">
+                                    <i class="fa-solid fa-magnifying-glass" style="color:#fff"></i>
+                                  </button>
+                                </div>
+
+                        </form>
+                     </ul>
+                        <div class="search_form" style="display: none">
+                            <form class="form-inline" action="/search" method="post">
+                                <input class="form-control" name="search" id="search" autocomplete="off"  placeholder="Search" style="border:0px;">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+
+                            </form>
+                        </div>
+                        <ul class="navbar-nav ms-auto mt-2">
+                            <li class="nav-item "><a class="nav-link" href="/products"><i class="fa-brands fa-product-hunt"></i> Products</a></li>
+
+                            <li class="nav-item"><a class="nav-link" href="/cart"><i class="fa-solid fa-cart-shopping"></i> Cart</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/login"><i class="fa-solid fa-right-to-bracket"></i> Sign In</a></li>
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+        <!-- main body -->
+        <main class="container-fluid py-0 text-center" >{% block main %}{% endblock %}</main>
+
+        <!--Footer-->
+        <div class="d-flex align-items-end footer px-5 py-4 mt-4 justify-content-center" style="background-color:#17222e; color:white; padding:auto;">
+            <footer class="footer">
+                <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+                <div class="row px-4 py-2 justify-content-start">
+                    <div class="col">
+                        <strong>Get to know Us</strong>
+                        <p class="my-0">about us</p>
+                        <p class="my-0">careers</p>
+                        <p class="my-0">blog</p>
+                    </div>
+                    <div class="col">
+                        <strong>Connect with Us</strong>
+                        <a class="my-0" href="https://www.facebook.com/profile.php?id=61558881623774" style="text-decoration: none; color: white;">facebook</a>
+                        <br>
+                        <a class="my-0" href="https://www.instagram.com/helpful_mushrooms?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" style="text-decoration: none; color: white;">instagram</a>
+                        <br>
+                        <a class="my-0" href="https://twitter.com/?lang=en" style="text-decoration: none; color: white;">twitter</a>
+                        
+                    </div>
+                    <div class="col">
+                        <strong>Contact Us</strong>
+                        <p class="my-0">whatsapp</p>
+                        <a class="my-0" href="mailto:helpfulmushrooms@gmail.com" style="text-decoration: none; color: white;">gmail</a>
+                        <p class="my-0">phone number</p>
+                        
+                    </div>
+                    <div class="col">
+                        <strong>Let Us Help You</strong>
+                        <a class="my-0" href="/account" style="text-decoration: none; color: white;">your account</a>
+                        <p class="my-0">help</p>
+
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </body>
+</html>

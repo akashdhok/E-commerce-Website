@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Security
+{% endblock %}
+
+{% block main %}
+<div class="m-3 p-2"  style="background-color:rgba(255, 255, 255, 0.5); backdrop-filter: blur(10px); opacity: 0.8;">
+    <h4>
+        Security
+    </h4>
+    <hr>
+    {% if user %}
+        {% for ur in user %}
+        <form method="post" action="/security" style="justify-content: center; text-align: -webkit-center;">
+            <div class="form-row">
+                <div class="col-md-6 mb-3">
+                  <label for="validationDefault02">username</label>
+                  <input type="text" class="form-control" id="username" name="username" value="{{ur.username}}" required>
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="validationDefault02">Phone number</label>
+                <input type="text" class="form-control" id="username" name="username" value="{{ur.phone}}" disabled>
+              </div>
+              <div class="col-md-6 mb-3">
+                  <label for="validationDefault02">email</label>
+                  <input type="text" class="form-control" id="username" name="username" value="{{ur.email}}" disabled>
+                </div>
+                <button class="btn btn-primary" type="submit">Save</button>
+            </div>
+            </div>
+        </form>
+        {% endfor %}
+    {% endif %}
+</div>
+{% endblock %}

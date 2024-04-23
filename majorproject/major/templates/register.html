@@ -1,0 +1,89 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+{% if error %}
+<div class="alert alert-danger alert-dismissible fade show" role="alert" >
+    <strong>{{error}}
+  </div>
+{% endif %}
+<div class="d-lg-inline-flex p-5 mt-4" style="background-color:white">
+    <div class="SignUpForm">
+        <div class="d-flex justify-content-start my-4">
+            <h3>
+                 Sign Up
+            </h3>
+        </div>
+
+        <form method="post" action="/register">
+            <div class="mb-2">
+                <label class="d-flex justify-contain-start form-label"><b>Your name</b></label>
+                <input type="text" class="form-control" id="username" name="username" s="First and last name">
+                {% if 'username' in blank %}
+                <div class="mb-1 text-danger" style="font-size:12px">
+                    <b>
+                        Name can't be blank.
+                    </b>
+                </div>
+                {% endif %}
+            </div>
+            <div class="mb-2">
+                <label for="exampleInputEmail1" class="d-flex justify-contain-start form-label"><b>Email</b></label>
+                <input type="email" class="form-control" id="email" name="email" s="Email address" requird>
+                {% if 'email' in blank %}
+                <div class="mb-1 text-danger" style="font-size:12px">
+                    <b>
+                        Email address can't be blank.
+                    </b>
+                </div>
+                {% endif %}
+            </div>
+            <div class="mb-2">
+                <label for="exampleInputEmail1" class="d-flex justify-contain-start form-label"><b>Mobile number</label></b></label>
+                <input type="text" class="form-control" id="phone" name="phone" s="Mobile number">
+                <div class="mb-1 text-danger" style="font-size:12px">
+                    <b>
+                       {% if 'phone' in blank %}
+                       Mobile number can't be blank.
+                       {% endif %}
+                       {{phone_error}}
+                   </b>
+                </div>
+
+            </div>
+
+            <div class="mb-2">
+                <label for="exampleInputPassword1" class="d-flex justify-contain-start form-label"><b>Password<b></label>
+                <input type="password" class="form-control" id="password" name="password" s="Password">
+                <div id="emailHelp" class="d-none d-lg-block form-text">Passwords must be at least 6 characters.</div>
+                {% if 'password' in blank %}
+                <div class="mb-1 text-danger" style="font-size:12px">
+                    Password can't be blank.
+                </div>
+                {% endif %}
+            </div>
+            <div class="mb-2">
+                <label for="exampleInputPassword1" class="d-flex justify-contain-start form-label"><b>Confirm Password</b></label>
+                <input type="password" class="form-control" id="confirm_password" name="confirm_password" s="Confirm password">
+                <div class="mb-1 text-danger" style="font-size:12px">
+                    {{password_error}}
+                </div>
+                {% if 'confirm_password' in blank %}
+                <div class="mb-1 text-danger" style="font-size:12px">
+                    Confirm password can't be blank.
+                </div>
+                {% endif %}
+            </div>
+            <button type="submit" class="btn btn-primary">Register</button>
+            <div style="font-size:14px">
+                <span>Already have account?</span><a href="/login"> Login.<span>&#8599</span></a>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+HM cart
+{% endblock %}
+
+{% block main %}
+<div class="row" style="opacity: 0.8; backdrop-filter: blur(10px);">
+    <div class="col-10">
+        <div class="cart py-3">
+            {% if not cart %}
+            <div class="text-left mx-4">
+                <h3 class="d-block mb-0" style="text-align:start"> Your Shopping Cart is Empty.</h3>
+            </div>
+            {% else %}
+            <div class="text-left mx-4">
+                <h3 class="d-block mb-0" style="text-align:start">Shopping Cart</h3>
+                <a href="/remove_all_from_cart" class="d-flex text-decoration-none" style="text-align:start;">
+                    <span style="font-size:12px;font-weight:600;color:#007185">Delete all items</span>
+                </a>
+                <hr>
+            </div>
+            {% endif %}
+            {% for product in cart %}
+            <div>
+                <div class="row">
+                    <div class="col-4">
+                        <img src="/static/img/{{product.name}}.png" style="height:180px;width:150px;">
+                    </div>
+                    <div class="col-6 px-0" style="text-align:start;">
+                        <div class="product_name">
+                            <a href="/product_detail/{{product.id}}" class="text-decoration-none" style="text-align:start;">
+                                <span style="font-weight:600;color:black">
+                                    {{product.name}}
+                                </span>
+                            </a>
+                                <span>Qty: 1</span>
+                                <a href="/remove_from_cart/{{product.id}}" class="d-flex text-decoration-none" style="text-align:start;">
+                                    <span style="font-size:12px;font-weight:600;color:#007185">Delete</span>
+                                </a>
+                        </div>
+                    </div>
+                    <div class="col-2 px-0">
+                        <div class="product_price">
+                            <strong>
+                                &#8377;{{product.price}}
+                            </strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="mx-4">
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="col-2 px-0">
+        <div  style="background-color:white; margin-top:14px; opacity: 0.8;">
+            <div class="text-wrap">
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

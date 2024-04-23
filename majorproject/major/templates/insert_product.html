@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+Insert product data
+{% endblock %}
+
+
+{% block main %}
+<form action="/insert" method="post">
+    <label>product_id</label>
+    <input name="product_id" type="text" id="product_id">
+    <label>name</label>
+    <input name="name" type="text" id="name">
+    <label>description</label>
+    <input name="description" type="text" id="description">
+    <label>price</label>
+    <input name="price" type="text" id="price">
+    <label>category_id</label>
+    <input name="category_id" type="text" id="category_id">
+    <button type="submit" >Submit</button>
+</form>
+{% endblock %}

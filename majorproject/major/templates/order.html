@@ -1,0 +1,101 @@
+{% extends "layout1.html" %}
+
+{% block title %}
+Order
+{% endblock %}
+
+{% block main %}
+
+{% if user_address %}
+Delivery address
+<div class="row">
+    {% for data in user_address %}
+    <div class="col">
+        <h4>
+        {{data.address}}
+        </h4>
+    </div>
+    <div class="col">
+        <a class="btn btn-info col" href="/delete_address/{{product_id}}">Delete</a>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+
+<div class="col" style="text-align: -webkit-center;">
+    <form  method="post" action="/order/{{product_id}}">
+        <div class="form-row">
+          <div class="col-md-6 mb-3">
+            <label for="validationDefault01"> Name</label>
+            <input type="text" class="form-control" id="validationDefault01" value=" " required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="validationDefault02">Address</label>
+            <input type="text" class="form-control" id="address" name="address" value=" " required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-md-6 mb-3">
+            <label for="validationDefault03">City</label>
+            <input type="text" class="form-control" id="city" name="city" required>
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="validationDefault04">State</label>
+            <select class="custom-select" id="state" name="state" required>
+              <option selected disabled value="">Choose...</option>
+            </select>
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="validationDefault05">Zip</label>
+            <input type="text" class="form-control" id="pin_code" name="pin_code" required>
+          </div>
+        </div>
+        <div class="form-group">
+        </div>
+        <button class="btn btn-primary" type="submit">Save</button>
+      </form>
+</div>
+<script>
+    var stateDrop = document.getElementById('state')
+
+    var states = [
+        'Andhra Pradesh',
+        'Arunachal Pradesh',
+        'Assam',
+        'Bihar',
+        'Chattishgarh',
+        'Goa',
+        'Gujarat',
+        'Harayana',
+        "Himachal Pradesh",
+        'Jharkhand',
+        'Karnataka',
+        'Kerala',
+        'Madhya Pradesh',
+        'Maharashtra',
+        'Manipur',
+        'Meghalaya',
+        'Mizoram',
+        'Nagaland',
+        'Odisa',
+        'Punjab',
+        'Rajasthan',
+        'Sikkim',
+        'Tamil Nadu',
+        'Telangana',
+        'Tripura',
+        'Uttar Pradesh',
+        'Uttrakhand',
+        'West Bengal'
+    ]
+
+    for(var i=0; i<states.length; i++){
+        var option = document.createElement("option");
+        option.text = states[i];
+        option.value = states[i];
+        stateDrop.add(option);
+    }
+</script>
+{% endif %}
+Payment
+{% endblock %}

@@ -1,0 +1,119 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Helpfulmushroom
+{% endblock %}
+
+{% block main %}
+    <div class="px-0">
+        <div class="row" style="background-color:white">
+            <div class="col flex-wrap py-0 px-0" style="width:100%; height:100%;">
+                {% for data in free_pickle %}
+                    <a href="/order/{{data.product_id}}">
+                        <img src="/static/img/banner.png" class="rounded float-right" alt="...">
+                    </a>
+                {% endfor %}
+            </div>
+        <!-- <div class="col d-none d-lg-block">
+          {% for data in free_pickle %}
+            <h2>
+                {{data.name}}
+            </h2>
+            <h5>
+                {{data.description}}
+            </h5>
+            <div class="flex-wrap  mt-5 mx-4" style="text-align:start;">
+                <p>1.Highlight the distinctive taste of oyster mushrooms, which can be savory, earthy, and slightly nutty.</p>
+                <p>2.Oyster mushrooms are known for their nutritional value, containing essential vitamins, minerals, and antioxidants.</p>
+                <p>3.Appeal to a broader audience by emphasizing that your oyster mushroom pickle is a delicious option for vegetarians and vegans, providing a tasty alternative to meat-based pickles.</p>
+                <p>4.If applicable, highlight the use of locally sourced oyster mushrooms and other ingredients.</p>
+                <p>5.Assure customers that your pickle is free from artificial preservatives, colors, and flavors. </p>
+                <p></p>
+                <p></p>
+                <p></p>
+                <p></p>
+            </div>
+            <h3>
+                {{data.price}}
+            </h3>
+
+        </div>
+        <div class="col">
+            <div class="row">
+                <img src="/static/img/osyter_mushroom.png" class="rounded float-right" alt="...">
+            </div>
+            <div class="row d-lg-none">
+                <div>
+                    <a href="/product_detail/{{data.product_id}}">
+                        <h7>
+                            {{data.name}}
+                        </h7>
+                    </a>
+                    <p>
+                        <small>
+                            {{data.description}}
+                        </small>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="my-2">
+                    <a class="btn btn-primary" href="/order/{{data.product_id}}" role="button">Order now</a>
+                </div> -->
+        </div>
+{% endfor %}
+</div>
+</div>
+<div class="d-none d-lg-block mt-3">
+</div>
+<!-- <div class="col-6">
+        <hr class="my-0" style="height:2px;border-width:0;color:#17222e;background-color:#17222e; ">
+    </div>
+    <div class="d-flex justify-content-center "id="products">
+        <h4>Products</h4>
+    </div>
+    <div class="col-7 ">
+        <hr class="mb-4 mt-0"style="height:5px;border-width:0;color:#17222e;background-color:#17222e;">
+    </div> -->
+<div class="d-flex flex-wrap justify-content-center">
+
+    {% for product in products %}
+
+        <div class="">
+            <a href="/product_detail/{{product.product_id}}" class="text-decoration-none">
+
+                <div class="card"  onmouseover="this.style.boxShadow='0 8px 16px {{product.color}}'" onmouseout="this.style.boxShadow='none'">
+                    <!-- <div class="white-circle">
+                        <img src="/static/img/jar.png" >
+                    </div> -->
+                    <img src="/static/img/{{product.name}}.png" class="card_img" alt="{{product.name}}_card_img">
+                    <div class="card-body">
+                        <a href="/product_detail/{{product.product_id}}" class="text-decoration-none">
+                            <h5 class="card-title" onmouseover="this.style.color='{{product.color}}'" onmouseout="this.style.color='#007185'">{{product.name}}</h5>
+                        </a>
+                        <!-- <div class="ellipsis-container">
+                            <p class="text-left">{{product.description}}</p>
+                        </div> -->
+                        <div>
+                            <b>&#8377;{{product.price}}</b>
+                        </div>
+                        <div class="d-none d-md-block">
+
+                            <div class="d-flex justify-content-around mt-2">
+                                <a href="/order/{{product.product_id}}" class="btn btn-primary">Buy now</a>
+                                <a href="/add_to_cart/{{product.product_id}}" class="btn btn-primary"><i class="fa-solid fa-cart-shopping"></i> Add to cart</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </a>
+            </div>
+
+            {% endfor %}
+</div>
+
+</div>
+</div>
+<script async src="https://static.addtoany.com/menu/page.js"></script>
+{% endblock %}
